@@ -5,6 +5,7 @@ import { CommentEntity } from './entities/comment.entity'
 import { UserEntity } from './entities/user.entity'
 import { ArticleModule } from './modules/article.module'
 import { CommentModule } from './modules/comment.module'
+import { UploadModule } from './modules/upload.module'
 import { UserModule } from './modules/user.module'
 
 @Module({
@@ -12,6 +13,7 @@ import { UserModule } from './modules/user.module'
 		CommentModule,
 		UserModule,
 		ArticleModule,
+		UploadModule,
 		TypeOrmModule.forRoot({
 			type: 'mysql',
 			host: 'localhost',

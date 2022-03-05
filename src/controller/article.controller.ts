@@ -20,6 +20,11 @@ export class ArticleController {
 		return await this.articleService.select(limit, offset)
 	}
 
+	@Get(':id')
+	async detail(@Param('id') id: number) {
+		return await this.articleService.detail(id)
+	}
+
 	@Post()
 	async update(
 		@Body('article') article: ArticleInterface,
