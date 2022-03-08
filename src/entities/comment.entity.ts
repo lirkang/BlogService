@@ -16,9 +16,6 @@ export class CommentEntity {
 	@Column({ default: 0 })
 	delete: number
 
-	@Column({ length: 15 })
-	username: string
-
 	@Column({ length: 100 })
 	content: string
 

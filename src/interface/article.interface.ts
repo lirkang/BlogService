@@ -3,8 +3,6 @@ export class ArticleInterface {
 
 	create_at: number
 
-	username: string
-
 	nickname: string
 
 	title: string

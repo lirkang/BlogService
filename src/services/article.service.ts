@@ -20,7 +20,6 @@ export class ArticleService {
 				'cover',
 				'create_at',
 				'title',
-				'username',
 				'visit_count',
 				'nickname',
 				'content'
@@ -41,7 +40,6 @@ export class ArticleService {
 				'cover',
 				'create_at',
 				'title',
-				'username',
 				'visit_count',
 				'nickname',
 				'content'
@@ -51,13 +49,5 @@ export class ArticleService {
 
 	create(article: ArticleInterface) {
 		return this.articleRepository.insert(article)
-	}
-
-	delete(id: number) {
-		return this.articleRepository.update(id, { delete: 1 })
-	}
-
-	update(id: number, article: ArticleInterface) {
-		return this.articleRepository.update(id, article)
 	}
 }

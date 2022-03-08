@@ -14,9 +14,6 @@ export class ArticleEntity {
 	create_at: number
 
 	@Column({ length: 15 })
-	username: string
-
-	@Column({ length: 15 })
 	nickname: string
 
 	@Column({ length: 20 })

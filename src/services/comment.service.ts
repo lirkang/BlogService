@@ -13,7 +13,7 @@ export class CommentService {
 
 	async select(limit: number, offset: number) {
 		return await this.commentRepository.find({
-			select: ['content', 'id', 'nickname', 'username'],
+			select: ['content', 'id', 'nickname'],
 			where: { delete: 0 },
 			skip: limit,
 			take: offset
@@ -22,9 +22,5 @@ export class CommentService {
 
 	async create(comment: CommentInterface) {
 		return await this.commentRepository.save(comment)
-	}
-
-	async delete(id: number) {
-		return await this.commentRepository.update(id, { delete: 1 })
 	}
 }
