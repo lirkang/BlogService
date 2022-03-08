@@ -7,7 +7,7 @@ import { TransformInterceptor } from './config/response.interceptor'
 async function bootstrap() {
 	const app = await NestFactory.create<NestExpressApplication>(AppModule)
 
-	app.useStaticAssets('public', { prefix: '/public' })
+	app.useStaticAssets('./public', { prefix: '/public' })
 	app.enableCors()
 	app.setGlobalPrefix('/data')
 	app.useGlobalInterceptors(new TransformInterceptor())

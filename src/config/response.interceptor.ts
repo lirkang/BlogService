@@ -13,23 +13,11 @@ export class TransformInterceptor implements NestInterceptor {
 		next: CallHandler<any>
 	): Observable<any> | Promise<Observable<any>> {
 		return next.handle().pipe(
-			map((result = {}) => {
-				let finalResult = result || null
-				let msg = result
-					? '请求成功, 已响应对应的数据'
-					: '请求成功, 没有相应的数据'
-
-				if (result.msg) {
-					msg = result.msg
-					finalResult = null
-				}
-
-				return {
-					result: finalResult,
-					status: 200,
-					msg
-				}
-			})
+			map(result => ({
+				result,
+				status: 200,
+				msg: '请求成功, 已响应相关的数据'
+			}))
 		)
 	}
 }

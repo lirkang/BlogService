@@ -19,11 +19,11 @@ export class CommentEntity {
 	@Column({ length: 15 })
 	username: string
 
-	@Column({ length: 50 })
+	@Column({ length: 100 })
 	content: string
 
 	@CreateDateColumn()
-	create_at: number
+	create_at: string
 
 	@Column()
 	avatar: string

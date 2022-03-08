@@ -33,4 +33,7 @@ export class ArticleEntity {
 
 	@Column({ default: 0 })
 	delete: number
+
+	@Column({ type: 'text' })
+	content: string
 }

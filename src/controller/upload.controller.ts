@@ -1,5 +1,4 @@
 import {
-	Bind,
 	Body,
 	Controller,
 	Post,

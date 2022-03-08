@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { ArticleEntity } from 'src/entities/article.entity'
 import { ArticleInterface } from 'src/interface/article.interface'
-import { Repository } from 'typeorm'
+import { Like, Repository } from 'typeorm'
 
 @Injectable()
 export class ArticleService {
@@ -11,9 +11,9 @@ export class ArticleService {
 		private readonly articleRepository: Repository<ArticleEntity>
 	) {}
 
-	select(limit: number, offset: number) {
-		return this.articleRepository.find({
-			where: { delete: 0 },
+	async select(limit: number, offset: number, search: string) {
+		const [data, total] = await this.articleRepository.findAndCount({
+			where: { delete: 0, title: Like(`%${search}%`) },
 			select: [
 				'id',
 				'comment_count',
@@ -22,11 +22,14 @@ export class ArticleService {
 				'title',
 				'username',
 				'visit_count',
-				'nickname'
+				'nickname',
+				'content'
 			],
-			skip: offset,
+			skip: offset * limit,
 			take: limit
 		})
+
+		return { data, total }
 	}
 
 	detail(id: number) {
@@ -40,7 +43,8 @@ export class ArticleService {
 				'title',
 				'username',
 				'visit_count',
-				'nickname'
+				'nickname',
+				'content'
 			]
 		})
 	}
