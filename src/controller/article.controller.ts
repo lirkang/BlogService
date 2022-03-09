@@ -1,13 +1,4 @@
-import {
-	Body,
-	Controller,
-	Delete,
-	Get,
-	Param,
-	Post,
-	Put,
-	Query
-} from '@nestjs/common'
+import { Body, Controller, Get, Param, Put, Query } from '@nestjs/common'
 import { ArticleInterface } from 'src/interface/article.interface'
 import { ArticleService } from 'src/services/article.service'
 
@@ -21,11 +12,22 @@ export class ArticleController {
 		@Query('offset') offset: number,
 		@Query('search') search: string
 	) {
-		return await this.articleService.select(limit, offset, search)
+		const [data, total] = await this.articleService.select(
+			limit,
+			offset,
+			search
+		)
+
+		return { data, total }
 	}
 
 	@Get(':id')
 	async detail(@Param('id') id: number) {
-		return await this.articleService.detail(id)
+		return { data: await this.articleService.detail(id) }
+	}
+
+	@Put()
+	async create(@Body() article: ArticleInterface) {
+		return { data: await this.articleService.create(article) }
 	}
 }

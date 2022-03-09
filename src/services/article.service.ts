@@ -12,7 +12,7 @@ export class ArticleService {
 	) {}
 
 	async select(limit: number, offset: number, search: string) {
-		const [data, total] = await this.articleRepository.findAndCount({
+		return await this.articleRepository.findAndCount({
 			where: { delete: 0, title: Like(`%${search}%`) },
 			select: [
 				'id',
@@ -27,8 +27,6 @@ export class ArticleService {
 			skip: offset * limit,
 			take: limit
 		})
-
-		return { data, total }
 	}
 
 	detail(id: number) {

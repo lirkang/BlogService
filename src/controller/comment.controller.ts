@@ -13,11 +13,11 @@ export class CommentController {
 		@Query('offset') offset: number,
 		@Query('id') id: number
 	) {
-		return await this.commentService.select(limit, offset)
+		return { data: await this.commentService.select(limit, offset) }
 	}
 
 	@Put()
 	async create(@Body() comment: CommentInterface) {
-		return await this.commentService.create(comment)
+		return { data: await this.commentService.create(comment) }
 	}
 }

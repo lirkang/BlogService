@@ -13,10 +13,18 @@ export class CommentService {
 
 	async select(limit: number, offset: number) {
 		return await this.commentRepository.find({
-			select: ['content', 'id', 'nickname'],
+			select: [
+				'content',
+				'id',
+				'nickname',
+				'create_at',
+				'article_id',
+				'avatar',
+				'anonymous'
+			],
 			where: { delete: 0 },
-			skip: limit,
-			take: offset
+			skip: offset * limit,
+			take: limit
 		})
 	}
 

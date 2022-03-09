@@ -6,11 +6,10 @@ import {
 	UseInterceptors
 } from '@nestjs/common'
 import { FileInterceptor } from '@nestjs/platform-express'
-import { UploadService } from 'src/services/upload.service'
 
 @Controller('upload')
 export class UploadController {
-	constructor(public readonly uploadService: UploadService) {}
+	constructor() {}
 
 	@Post('*')
 	@UseInterceptors(FileInterceptor('file'))
@@ -18,6 +17,6 @@ export class UploadController {
 		@UploadedFile() file: Express.Multer.File,
 		@Body('path') path: string
 	) {
-		return this.uploadService.save(file, path)
+		return { data: { file, path } }
 	}
 }
