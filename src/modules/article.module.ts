@@ -5,8 +5,8 @@ import { ArticleEntity } from 'src/entities/article.entity'
 import { ArticleService } from 'src/services/article.service'
 
 @Module({
-	providers: [ArticleService],
-	imports: [TypeOrmModule.forFeature([ArticleEntity])],
-	controllers: [ArticleController]
+  providers: [ArticleService],
+  imports: [TypeOrmModule.forFeature([ArticleEntity])],
+  controllers: [ArticleController]
 })
 export class ArticleModule {}

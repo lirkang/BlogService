@@ -6,29 +6,29 @@ import { Repository } from 'typeorm'
 
 @Injectable()
 export class CommentService {
-	constructor(
-		@InjectRepository(CommentEntity)
-		private readonly commentRepository: Repository<CommentEntity>
-	) {}
+  constructor(
+    @InjectRepository(CommentEntity)
+    private readonly commentRepository: Repository<CommentEntity>
+  ) {}
 
-	async select(limit: number, offset: number) {
-		return await this.commentRepository.find({
-			select: [
-				'content',
-				'id',
-				'nickname',
-				'create_at',
-				'article_id',
-				'avatar',
-				'anonymous'
-			],
-			where: { delete: 0 },
-			skip: offset * limit,
-			take: limit
-		})
-	}
+  async select(limit: number, offset: number) {
+    return await this.commentRepository.find({
+      select: [
+        'content',
+        'id',
+        'nickname',
+        'create_at',
+        'article_id',
+        'avatar',
+        'anonymous'
+      ],
+      where: { delete: 0 },
+      skip: offset * limit,
+      take: limit
+    })
+  }
 
-	async create(comment: CommentInterface) {
-		return await this.commentRepository.save(comment)
-	}
+  async create(comment: CommentInterface) {
+    return await this.commentRepository.save(comment)
+  }
 }

@@ -5,14 +5,14 @@ import { HttpExceptionFilter } from './config/response.filter'
 import { TransformInterceptor } from './config/response.interceptor'
 
 async function bootstrap() {
-	const app = await NestFactory.create<NestExpressApplication>(AppModule)
+  const app = await NestFactory.create<NestExpressApplication>(AppModule)
 
-	app.useStaticAssets('./public', { prefix: '/public' })
-	app.enableCors()
-	app.setGlobalPrefix('/data')
-	app.useGlobalInterceptors(new TransformInterceptor())
-	app.useGlobalFilters(new HttpExceptionFilter())
+  app.useStaticAssets('./public', { prefix: '/public' })
+  app.enableCors()
+  app.setGlobalPrefix('/data')
+  app.useGlobalInterceptors(new TransformInterceptor())
+  app.useGlobalFilters(new HttpExceptionFilter())
 
-	await app.listen(623)
+  await app.listen(623)
 }
 bootstrap()

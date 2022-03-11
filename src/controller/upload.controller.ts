@@ -11,7 +11,7 @@ import { FileInterceptor } from '@nestjs/platform-express'
 export class UploadController {
 	constructor() {}
 
-	@Post('*')
+	@Post()
 	@UseInterceptors(FileInterceptor('file'))
 	upload(
 		@UploadedFile() file: Express.Multer.File,

@@ -1,33 +1,33 @@
 import {
-	Column,
-	CreateDateColumn,
-	Entity,
-	PrimaryGeneratedColumn
+  Column,
+  CreateDateColumn,
+  Entity,
+  PrimaryGeneratedColumn
 } from 'typeorm'
 
 @Entity()
 export class CommentEntity {
-	@PrimaryGeneratedColumn()
-	id: number
+  @PrimaryGeneratedColumn()
+  id: number
 
-	@Column({ length: 15 })
-	nickname: string
+  @Column({ length: 15 })
+  nickname: string
 
-	@Column({ default: 0 })
-	delete: number
+  @Column({ default: 0 })
+  delete: number
 
-	@Column({ length: 200 })
-	content: string
+  @Column({ length: 200 })
+  content: string
 
-	@CreateDateColumn()
-	create_at: string
+  @CreateDateColumn()
+  create_at: string
 
-	@Column({ default: 'none' })
-	avatar: string
+  @Column({ default: 'none' })
+  avatar: string
 
-	@Column()
-	article_id: number
+  @Column()
+  article_id: number
 
-	@Column({ default: 1 })
-	anonymous: number
+  @Column({ default: 1 })
+  anonymous: number
 }
