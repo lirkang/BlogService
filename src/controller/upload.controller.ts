@@ -1,22 +1,22 @@
 import {
-	Body,
-	Controller,
-	Post,
-	UploadedFile,
-	UseInterceptors
+  Body,
+  Controller,
+  Post,
+  UploadedFile,
+  UseInterceptors
 } from '@nestjs/common'
 import { FileInterceptor } from '@nestjs/platform-express'
 
 @Controller('upload')
 export class UploadController {
-	constructor() {}
+  constructor() {}
 
-	@Post()
-	@UseInterceptors(FileInterceptor('file'))
-	upload(
-		@UploadedFile() file: Express.Multer.File,
-		@Body('path') path: string
-	) {
-		return { data: { file, path } }
-	}
+  @Post()
+  @UseInterceptors(FileInterceptor('file'))
+  upload(
+    @UploadedFile() file: Express.Multer.File,
+    @Body('path') path: string
+  ) {
+    return { file: file.filename, path }
+  }
 }

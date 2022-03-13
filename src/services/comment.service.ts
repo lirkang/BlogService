@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
-import { CommentEntity } from 'src/entities/comment.entity'
-import { CommentInterface } from 'src/interface/comment.interface'
+import { CommentEntity } from 'entities/comment.entity'
+import { CommentInterface } from 'interface/comment.interface'
 import { Repository } from 'typeorm'
 
 @Injectable()
@@ -11,8 +11,8 @@ export class CommentService {
     private readonly commentRepository: Repository<CommentEntity>
   ) {}
 
-  async select(limit: number, offset: number) {
-    return await this.commentRepository.find({
+  select(limit: number, offset: number) {
+    return this.commentRepository.find({
       select: [
         'content',
         'id',
@@ -28,7 +28,7 @@ export class CommentService {
     })
   }
 
-  async create(comment: CommentInterface) {
-    return await this.commentRepository.save(comment)
+  create(comment: CommentInterface) {
+    return this.commentRepository.save(comment)
   }
 }

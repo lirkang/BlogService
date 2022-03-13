@@ -33,4 +33,10 @@ export class ArticleEntity {
 
   @Column({ type: 'text' })
   content: string
+
+  @Column({ length: 50 })
+  introduce: string
+
+  @Column({ default: '' })
+  category: string
 }

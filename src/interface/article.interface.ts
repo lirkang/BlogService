@@ -7,4 +7,6 @@ export class ArticleInterface {
   visit_count: number
   cover: string
   delete: number
+  introduce: string
+  category: string
 }

@@ -1,7 +1,7 @@
 import { Body, Controller, Get, Put, Query } from '@nestjs/common'
-import { CommentInterface } from 'src/interface/comment.interface'
+import { CommentInterface } from 'interface/comment.interface'
 
-import { CommentService } from 'src/services/comment.service'
+import { CommentService } from 'services/comment.service'
 
 @Controller('comment')
 export class CommentController {

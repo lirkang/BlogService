@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common'
 import { MulterModule } from '@nestjs/platform-express'
-import { UploadController } from 'src/controller/upload.controller'
+import { UploadController } from 'controller/upload.controller'
 import { diskStorage } from 'multer'
 
 @Module({
