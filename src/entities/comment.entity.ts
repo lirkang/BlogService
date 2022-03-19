@@ -22,7 +22,7 @@ export class CommentEntity {
   @CreateDateColumn()
   create_at: string
 
-  @Column({ default: 'none' })
+  @Column({ default: 'defaultCommentAvatar.jpg' })
   avatar: string
 
   @Column()

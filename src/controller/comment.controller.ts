@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Put, Query } from '@nestjs/common'
+import { Body, Controller, Get, Param, Put, Query } from '@nestjs/common'
 import { CommentInterface } from 'interface/comment.interface'
 
 import { CommentService } from 'services/comment.service'
@@ -7,13 +7,15 @@ import { CommentService } from 'services/comment.service'
 export class CommentController {
   constructor(private readonly commentService: CommentService) {}
 
-  @Get()
+  @Get(':id')
   async select(
     @Query('limit') limit: number,
     @Query('offset') offset: number,
-    @Query('id') id: number
+    @Param('id') id: number
   ) {
-    return { data: await this.commentService.select(limit, offset) }
+    const [data, total] = await this.commentService.select(limit, offset, id)
+
+    return { data, total }
   }
 
   @Put()

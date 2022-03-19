@@ -11,8 +11,8 @@ export class CommentService {
     private readonly commentRepository: Repository<CommentEntity>
   ) {}
 
-  select(limit: number, offset: number) {
-    return this.commentRepository.find({
+  select(limit: number, offset: number, id: number) {
+    return this.commentRepository.findAndCount({
       select: [
         'content',
         'id',
@@ -22,13 +22,24 @@ export class CommentService {
         'avatar',
         'anonymous'
       ],
-      where: { delete: 0 },
+      where: { delete: 0, article_id: id },
       skip: offset * limit,
-      take: limit
+      take: limit,
+      order: { create_at: 'DESC' }
     })
   }
 
   create(comment: CommentInterface) {
-    return this.commentRepository.save(comment)
+    const finialComment = {
+      nickname: comment.nickname,
+      avatar: comment.avatar
+    }
+
+    if (+comment.anonymous) {
+      finialComment.nickname = '匿名用户'
+      finialComment.avatar = 'defaultCommentAvatar.jpg'
+    }
+
+    return this.commentRepository.save({ ...comment, ...finialComment })
   }
 }

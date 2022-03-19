@@ -27,7 +27,8 @@ export class ArticleService {
         'category'
       ],
       skip: offset * limit,
-      take: limit
+      take: limit,
+      order: { create_at: 'DESC' }
     })
   }
 
