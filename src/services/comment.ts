@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
-import { CommentEntity } from 'entities/comment.entity'
-import { CommentInterface } from 'interface/comment.interface'
+import { CommentEntity } from 'entities/comment'
 import { Repository } from 'typeorm'
+import { CommentDto } from 'types/comment'
 
 @Injectable()
 export class CommentService {
@@ -11,7 +11,7 @@ export class CommentService {
     private readonly commentRepository: Repository<CommentEntity>
   ) {}
 
-  select(limit: number, offset: number, id: number) {
+  select(limit = 10, offset = 0, id: number) {
     return this.commentRepository.findAndCount({
       select: [
         'content',
@@ -29,17 +29,11 @@ export class CommentService {
     })
   }
 
-  create(comment: CommentInterface) {
-    const finialComment = {
-      nickname: comment.nickname,
-      avatar: comment.avatar
-    }
+  anonymous(comment: CommentDto) {
+    return this.commentRepository.save(comment)
+  }
 
-    if (+comment.anonymous) {
-      finialComment.nickname = '匿名用户'
-      finialComment.avatar = 'defaultCommentAvatar.jpg'
-    }
-
-    return this.commentRepository.save({ ...comment, ...finialComment })
+  default(comment: CommentDto) {
+    return this.commentRepository.save(comment)
   }
 }

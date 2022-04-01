@@ -1,12 +1,13 @@
 import { Module } from '@nestjs/common'
 import { TypeOrmModule } from '@nestjs/typeorm'
-import { ArticleEntity } from 'entities/article.entity'
-import { CategoryEntity } from 'entities/category.entity'
-import { CommentEntity } from 'entities/comment.entity'
-import { ArticleModule } from 'modules/article.module'
-import { CategoryModule } from 'modules/category.module'
-import { CommentModule } from 'modules/comment.module'
-import { UploadModule } from 'modules/upload.module'
+
+import { ArticleEntity } from 'entities/article'
+import { CategoryEntity } from 'entities/category'
+import { CommentEntity } from 'entities/comment'
+import { ArticleModule } from 'modules/article'
+import { CategoryModule } from 'modules/category'
+import { CommentModule } from 'modules/comment'
+import { UploadModule } from 'modules/upload'
 
 @Module({
   imports: [

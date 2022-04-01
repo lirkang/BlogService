@@ -1,6 +1,6 @@
-import { Body, Controller, Get, Put } from '@nestjs/common'
-import { CategoryInterface } from 'interface/category.interface'
-import { CategoryService } from 'services/category.service'
+import { Body, Controller, Get, Post } from '@nestjs/common'
+import { CategoryService } from 'services/category'
+import { CategoryDto } from 'types/category'
 
 @Controller('category')
 export class CategoryController {
@@ -11,8 +11,8 @@ export class CategoryController {
     return await this.categoryService.select()
   }
 
-  @Put()
-  async create(@Body() category: CategoryInterface) {
+  @Post()
+  async create(@Body() category: CategoryDto) {
     return await this.categoryService.create(category)
   }
 }

@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common'
 import { TypeOrmModule } from '@nestjs/typeorm'
-import { CategoryController } from 'controller/category.controller'
-import { CategoryEntity } from 'entities/category.entity'
-import { CategoryService } from 'services/category.service'
+import { CategoryController } from 'controller/category'
+import { CategoryEntity } from 'entities/category'
+import { CategoryService } from 'services/category'
 
 @Module({
   controllers: [CategoryController],
