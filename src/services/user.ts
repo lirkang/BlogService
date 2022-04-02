@@ -14,6 +14,10 @@ export class UserService {
     return this.userRepository.findOne({ where: { username, password } })
   }
 
+  findUser(username: string) {
+    return this.userRepository.findOne({ username })
+  }
+
   register(user: UserDto) {
     return this.userRepository.save(user)
   }

@@ -29,11 +29,15 @@ export class CommentService {
     })
   }
 
-  anonymous(comment: CommentDto) {
+  anonymousSave(comment: CommentDto) {
     return this.commentRepository.save(comment)
   }
 
-  default(comment: CommentDto) {
+  defaultSave(comment: CommentDto) {
     return this.commentRepository.save(comment)
+  }
+
+  remove(id: number) {
+    return this.commentRepository.update(id, { deleted: 1 })
   }
 }

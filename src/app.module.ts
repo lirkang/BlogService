@@ -4,6 +4,7 @@ import { TypeOrmModule } from '@nestjs/typeorm'
 import { ArticleEntity } from 'entities/article'
 import { CategoryEntity } from 'entities/category'
 import { CommentEntity } from 'entities/comment'
+import { ImageEntity } from 'entities/image'
 import { UserEntity } from 'entities/user'
 
 import { ArticleModule } from 'modules/article'
@@ -26,9 +27,14 @@ import { UserModule } from 'modules/user'
       username: 'root',
       password: '123456',
       database: 'nest',
-      entities: [CommentEntity, ArticleEntity, CategoryEntity, UserEntity],
-      // synchronize: true,
-      // autoLoadEntities: true
+      entities: [
+        CommentEntity,
+        ArticleEntity,
+        CategoryEntity,
+        UserEntity,
+        ImageEntity
+      ],
+      synchronize: true
     })
   ]
 })

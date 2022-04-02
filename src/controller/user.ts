@@ -21,6 +21,10 @@ export class UserController {
   @Post('register')
   @Header('content-type', 'application/json')
   async register(@Body() user: UserDto) {
-    return [await this.userService.register(user)]
+    const findUser = await this.userService.findUser(user.username)
+
+    return findUser
+      ? [null, 403, '用户名已存在']
+      : [await this.userService.register(user), 200, '注册成功']
   }
 }

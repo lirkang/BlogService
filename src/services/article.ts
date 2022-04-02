@@ -13,7 +13,9 @@ const selectKeys: (keyof ArticleDto)[] = [
   'visit_count',
   'nickname',
   'introduce',
-  'category'
+  'category',
+  'update_time',
+  'username'
 ]
 
 @Injectable()
@@ -38,7 +40,7 @@ export class ArticleService {
 
   detail(id: number) {
     return this.articleRepository.findOne(id, {
-      where: { delete: 0 },
+      where: { deleted: 0 },
       select: [...selectKeys, 'content']
     })
   }
@@ -59,5 +61,9 @@ export class ArticleService {
 
   create(article: ArticleDto) {
     return this.articleRepository.insert(article)
+  }
+
+  remove(id: number) {
+    return this.articleRepository.update(id, { deleted: 1 })
   }
 }

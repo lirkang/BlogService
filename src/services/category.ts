@@ -18,4 +18,8 @@ export class CategoryService {
   create(category: CategoryDto) {
     return this.categoryRepository.save(category)
   }
+
+  remove(id: number) {
+    return this.categoryRepository.update(id, { deleted: 1 })
+  }
 }

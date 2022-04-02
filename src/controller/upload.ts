@@ -26,7 +26,9 @@ export class UploadController {
         })),
 
         category
-      }
+      },
+      200,
+      '上传成功'
     ]
   }
 }
