@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, Query } from '@nestjs/common'
+import { Body, Controller, Get, Header, Post, Query } from '@nestjs/common'
 import { ArticleService } from 'services/article'
 import { ArticleDto } from 'types/article'
 
@@ -12,18 +12,18 @@ export class ArticleController {
     @Query('offset') offset: number,
     @Query('keyword') keyword: string
   ) {
-    const [data, total] = await this.articleService.select(
+    const [article, total] = await this.articleService.select(
       limit,
       offset,
       keyword
     )
 
-    return { data, total }
+    return [{ article, total }]
   }
 
   @Get('/detail')
   async detail(@Query('id') id: number) {
-    return { data: await this.articleService.detail(id) }
+    return [await this.articleService.detail(id)]
   }
 
   @Get('/category')
@@ -33,18 +33,19 @@ export class ArticleController {
     @Query('keyword') keyword: string,
     @Query('category') category: string
   ) {
-    const [data, total] = await this.articleService.category(
+    const [article, total] = await this.articleService.category(
       limit,
       offset,
       keyword,
       category
     )
 
-    return { data, total }
+    return [{ article, total }]
   }
 
   @Post()
+  @Header('content-type', 'application/json')
   async create(@Body() article: ArticleDto) {
-    return { data: await this.articleService.create(article) }
+    return [await this.articleService.create(article)]
   }
 }

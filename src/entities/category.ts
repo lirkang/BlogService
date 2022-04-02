@@ -8,11 +8,23 @@ import {
 @Entity()
 export class CategoryEntity {
   @Column()
-  type: string
+  content: string
+
+  @Column({ length: 15 })
+  username: string
+
+  @Column({ length: 10 })
+  nickname: string
+
+  @Column({ default: 0 })
+  deleted: number
 
   @PrimaryGeneratedColumn()
   id: number
 
   @CreateDateColumn()
-  create_at: number
+  create_time: string
+
+  @CreateDateColumn()
+  update_time: string
 }

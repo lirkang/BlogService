@@ -15,9 +15,15 @@ export class TransformInterceptor implements NestInterceptor {
   ): Observable<any> | Promise<Observable<any>> {
     return next.handle().pipe(
       map(result => ({
-        result,
-        status: 200,
-        msg: '请求成功, 已响应相关的数据'
+        result: result
+          ? {
+              data: result[0] || null,
+              status: result[1] || 200,
+              msg: result[2] || '请求成功'
+            }
+          : null,
+        httpCode: 200,
+        httpMsg: '请求成功, 已响应相关的数据'
       }))
     )
   }

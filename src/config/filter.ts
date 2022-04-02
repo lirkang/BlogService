@@ -9,9 +9,9 @@ import {
 export class HttpExceptionFilter implements ExceptionFilter {
   catch(exception: HttpException, host: ArgumentsHost) {
     const response = host.switchToHttp().getResponse()
-    const status = exception.getStatus()
+    const httpCode = exception.getStatus()
 
-    response.status(status)
-    response.send({ result: null, status, msg: '请求错误, 请刷新重试' })
+    response.status(httpCode)
+    response.send({ result: null, httpCode, httpMsg: '请求错误, 请刷新重试' })
   }
 }

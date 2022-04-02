@@ -11,9 +11,15 @@ export class ArticleEntity {
   id: number
 
   @CreateDateColumn()
-  create_at: number
+  create_time: string
+
+  @CreateDateColumn()
+  update_time: string
 
   @Column({ length: 15 })
+  username: string
+
+  @Column({ length: 10 })
   nickname: string
 
   @Column({ length: 20 })
@@ -29,7 +35,7 @@ export class ArticleEntity {
   cover: string
 
   @Column({ default: 0 })
-  delete: number
+  deleted: number
 
   @Column({ type: 'text' })
   content: string
@@ -37,6 +43,6 @@ export class ArticleEntity {
   @Column({ length: 50 })
   introduce: string
 
-  @Column({ default: '' })
+  @Column()
   category: string
 }

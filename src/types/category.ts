@@ -1,7 +1,11 @@
 interface CategoryDto {
-  readonly type: string
   readonly id: number
-  readonly create_at: number
+  readonly content: string
+  readonly create_time: string
+  readonly update_time: string
+  readonly username: string
+  readonly nickname: string
+  readonly deleted: number
 }
 
 export { CategoryDto }

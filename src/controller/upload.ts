@@ -17,14 +17,16 @@ export class UploadController {
     @UploadedFiles() files: Express.Multer.File[],
     @Param('category') category: string
   ) {
-    return {
-      files: files.map(({ filename, path, size }) => ({
-        filename,
-        path,
-        size
-      })),
+    return [
+      {
+        files: files.map(({ filename, path, size }) => ({
+          filename,
+          path,
+          size
+        })),
 
-      category
-    }
+        category
+      }
+    ]
   }
 }

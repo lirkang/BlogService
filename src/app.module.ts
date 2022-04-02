@@ -27,7 +27,8 @@ import { UserModule } from 'modules/user'
       password: '123456',
       database: 'nest',
       entities: [CommentEntity, ArticleEntity, CategoryEntity, UserEntity],
-      synchronize: true
+      // synchronize: true,
+      // autoLoadEntities: true
     })
   ]
 })

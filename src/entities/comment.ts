@@ -10,24 +10,30 @@ export class CommentEntity {
   @PrimaryGeneratedColumn()
   id: number
 
-  @Column({ length: 15 })
+  @Column({ length: 10 })
   nickname: string
 
+  @Column({ length: 15 })
+  username: string
+
   @Column({ default: 0 })
-  delete: number
+  deleted: number
 
   @Column({ length: 200 })
   content: string
 
   @CreateDateColumn()
-  create_at: string
+  create_time: string
 
-  @Column({ default: 'defaultCommentAvatar.jpg' })
+  @CreateDateColumn()
+  update_time: string
+
+  @Column()
   avatar: string
 
   @Column()
   article_id: number
 
-  @Column({ default: 1 })
+  @Column({ default: 0 })
   anonymous: number
 }

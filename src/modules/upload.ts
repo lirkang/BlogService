@@ -10,10 +10,11 @@ import { diskStorage } from 'multer'
       storage: diskStorage({
         destination: (req, file, callback) =>
           callback(null, `./public/${req.params.category}/`),
+
         filename: (req, file, callback) =>
           callback(
             null,
-            `${req.params.category}_${Date.now()}.${
+            `${req.params.category}--${Date.now()}.${
               file.originalname.split('.')[1]
             }`
           )

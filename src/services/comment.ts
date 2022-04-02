@@ -17,15 +17,15 @@ export class CommentService {
         'content',
         'id',
         'nickname',
-        'create_at',
+        'create_time',
         'article_id',
         'avatar',
         'anonymous'
       ],
-      where: { delete: 0, article_id: id },
+      where: { deleted: 0, article_id: id },
       skip: offset * limit,
       take: limit,
-      order: { create_at: 'DESC' }
+      order: { create_time: 'DESC' }
     })
   }
 

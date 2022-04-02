@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, Query } from '@nestjs/common'
+import { Body, Controller, Get, Header, Post, Query } from '@nestjs/common'
 
 import { CommentService } from 'services/comment'
 import { CommentDto } from 'types/comment'
@@ -13,18 +13,20 @@ export class CommentController {
     @Query('offset') offset: number,
     @Query('id') id: number
   ) {
-    const [data, total] = await this.commentService.select(limit, offset, id)
+    const [comment, total] = await this.commentService.select(limit, offset, id)
 
-    return { data, total }
+    return [{ comment, total }]
   }
 
   @Post('/default')
+  @Header('content-type', 'application/json')
   async create(@Body() comment: CommentDto) {
-    return { data: await this.commentService.default(comment) }
+    return [await this.commentService.default(comment)]
   }
 
   @Post('/anonymous')
+  @Header('content-type', 'application/json')
   async anonymous(@Body() comment: CommentDto) {
-    return await this.commentService.anonymous(comment)
+    return [await this.commentService.anonymous(comment)]
   }
 }

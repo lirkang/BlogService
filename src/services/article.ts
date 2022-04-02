@@ -8,7 +8,7 @@ const selectKeys: (keyof ArticleDto)[] = [
   'id',
   'comment_count',
   'cover',
-  'create_at',
+  'create_time',
   'title',
   'visit_count',
   'nickname',
@@ -26,13 +26,13 @@ export class ArticleService {
   select(limit = 10, offset = 0, keyword = '') {
     return this.articleRepository.findAndCount({
       where: {
-        delete: 0,
+        deleted: 0,
         title: Like(`%${keyword}%`)
       },
       select: selectKeys,
       skip: offset * limit,
       take: limit,
-      order: { create_at: 'DESC' }
+      order: { create_time: 'DESC' }
     })
   }
 
@@ -43,17 +43,17 @@ export class ArticleService {
     })
   }
 
-  category(limit = 10, offset = 0, keyword = '', category = 'javascript') {
+  category(limit = 10, offset = 0, keyword = '', category = '') {
     return this.articleRepository.findAndCount({
       where: {
-        delete: 0,
+        deleted: 0,
         title: Like(`%${keyword}%`),
         category
       },
       select: selectKeys,
       skip: offset * limit,
       take: limit,
-      order: { create_at: 'DESC' }
+      order: { create_time: 'DESC' }
     })
   }
 
