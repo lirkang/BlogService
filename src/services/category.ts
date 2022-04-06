@@ -19,7 +19,7 @@ export class CategoryService {
     return this.categoryRepository.save(category)
   }
 
-  remove(id: number) {
+  remove(id = 0) {
     return this.categoryRepository.update(id, { deleted: 1 })
   }
 }

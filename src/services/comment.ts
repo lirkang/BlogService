@@ -11,7 +11,7 @@ export class CommentService {
     private readonly commentRepository: Repository<CommentEntity>
   ) {}
 
-  select(limit = 10, offset = 0, id: number) {
+  select(limit = 10, offset = 0, id = 0) {
     return this.commentRepository.findAndCount({
       select: [
         'content',
@@ -37,7 +37,7 @@ export class CommentService {
     return this.commentRepository.save(comment)
   }
 
-  remove(id: number) {
+  remove(id = 0) {
     return this.commentRepository.update(id, { deleted: 1 })
   }
 }

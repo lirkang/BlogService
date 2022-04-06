@@ -6,9 +6,14 @@ import {
   UseInterceptors
 } from '@nestjs/common'
 import { FilesInterceptor } from '@nestjs/platform-express'
+import { ApiOperation, ApiTags } from '@nestjs/swagger'
 
+@ApiTags('上传')
 @Controller('upload')
 export class UploadController {
+  @ApiOperation({
+    summary: '上传'
+  })
   @Post(':category')
   @UseInterceptors(
     FilesInterceptor('files', 20, { limits: { fileSize: 1024 * 1024 * 10 } })
@@ -19,11 +24,12 @@ export class UploadController {
   ) {
     return [
       {
-        files: files.map(({ filename, path, size }) => ({
-          filename,
-          path,
-          size
-        })),
+        files:
+          files?.map(({ filename, path, size }) => ({
+            filename,
+            path,
+            size
+          })) || [],
 
         category
       },

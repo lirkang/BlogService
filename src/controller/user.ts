@@ -1,11 +1,16 @@
-import { Body, Controller, Header, Headers, Post } from '@nestjs/common'
+import { Body, Controller, Header, Post } from '@nestjs/common'
+import { ApiOperation, ApiTags } from '@nestjs/swagger'
 import { UserService } from 'services/user'
 import { UserDto } from 'types/user'
 
+@ApiTags('用户')
 @Controller('user')
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
+  @ApiOperation({
+    summary: '登录'
+  })
   @Post('login')
   @Header('content-type', 'application/json')
   async login(
@@ -18,6 +23,9 @@ export class UserController {
     else return [{ user, token: '' }]
   }
 
+  @ApiOperation({
+    summary: '注册'
+  })
   @Post('register')
   @Header('content-type', 'application/json')
   async register(@Body() user: UserDto) {

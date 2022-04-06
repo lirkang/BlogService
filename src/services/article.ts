@@ -38,7 +38,7 @@ export class ArticleService {
     })
   }
 
-  detail(id: number) {
+  detail(id = 0) {
     return this.articleRepository.findOne(id, {
       where: { deleted: 0 },
       select: [...selectKeys, 'content']
