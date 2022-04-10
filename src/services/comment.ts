@@ -1,3 +1,10 @@
+/*
+ * @Author: likan
+ * @Date: 2022-03-05 19:52:28
+ * @Description:
+ * @LastEditTime: 2022-04-10 22:07:08
+ */
+
 import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { CommentEntity } from 'entities/comment'
@@ -11,7 +18,7 @@ export class CommentService {
     private readonly commentRepository: Repository<CommentEntity>
   ) {}
 
-  select(limit = 10, offset = 0, id = 0) {
+  select(limit: number, offset: number, id: number) {
     return this.commentRepository.findAndCount({
       select: [
         'content',
@@ -37,7 +44,7 @@ export class CommentService {
     return this.commentRepository.save(comment)
   }
 
-  remove(id = 0) {
+  remove(id: number) {
     return this.commentRepository.update(id, { deleted: 1 })
   }
 }

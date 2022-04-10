@@ -14,8 +14,8 @@ export class UserController {
   @Post('login')
   @Header('content-type', 'application/json')
   async login(
-    @Body('username') username: string,
-    @Body('password') password: string
+    @Body('username') username = '',
+    @Body('password') password = ''
   ) {
     const user = await this.userService.login(username, password)
 

@@ -21,9 +21,9 @@ export class CommentController {
   })
   @Get()
   async select(
-    @Query('limit') limit: number,
-    @Query('offset') offset: number,
-    @Query('id') id: number
+    @Query('limit') limit = 10,
+    @Query('offset') offset = 0,
+    @Query('id') id = 0
   ) {
     const [comment, total] = await this.commentService.select(limit, offset, id)
 
@@ -56,7 +56,7 @@ export class CommentController {
     summary: '删除评论'
   })
   @Delete()
-  async remove(@Query('id') id: number) {
+  async remove(@Query('id') id = 0) {
     await this.commentService.remove(id)
 
     return [null, 200, '删除评论成功']

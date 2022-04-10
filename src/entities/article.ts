@@ -1,3 +1,10 @@
+/*
+ * @Author: likan
+ * @Date: 2022-03-05 19:52:28
+ * @Description:
+ * @LastEditTime: 2022-04-10 17:44:58
+ */
+
 import {
   Column,
   CreateDateColumn,
@@ -31,7 +38,7 @@ export class ArticleEntity {
   @Column({ default: 0 })
   visit_count: number
 
-  @Column()
+  @Column({ default: '' })
   cover: string
 
   @Column({ default: 0 })
@@ -40,9 +47,9 @@ export class ArticleEntity {
   @Column({ type: 'text' })
   content: string
 
-  @Column({ length: 50 })
+  @Column({ length: 50, default: '' })
   introduce: string
 
-  @Column()
+  @Column({ default: 'javascript' })
   category: string
 }

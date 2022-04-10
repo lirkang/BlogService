@@ -1,3 +1,10 @@
+/*
+ * @Author: likan
+ * @Date: 2022-03-13 13:59:22
+ * @Description:
+ * @LastEditTime: 2022-04-10 22:08:31
+ */
+
 import {
   Body,
   Controller,
@@ -37,7 +44,7 @@ export class CategoryController {
     summary: '删除分类'
   })
   @Delete()
-  async remove(@Query('id') id: number) {
+  async remove(@Query('id') id = 0) {
     await this.categoryService.remove(id)
 
     return [null, 200, '删除分类成功']

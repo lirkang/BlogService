@@ -1,3 +1,10 @@
+/*
+ * @Author: likan
+ * @Date: 2022-04-06 16:52:40
+ * @Description:
+ * @LastEditTime: 2022-04-10 22:09:08
+ */
+
 import { Controller, Delete, Get, Query } from '@nestjs/common'
 import { ApiOperation, ApiTags } from '@nestjs/swagger'
 
@@ -10,11 +17,11 @@ export class ImageController {
     summary: '获取正在写的文章的图片'
   })
   @Get()
-  select(@Query('id') id: number) {}
+  select(@Query('id') id = 0) {}
 
   @ApiOperation({
     summary: '删除正在写的文章的图片'
   })
   @Delete()
-  delete(@Query('id') id: number) {}
+  delete(@Query('id') id = 0) {}
 }

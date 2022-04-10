@@ -1,3 +1,10 @@
+/*
+ * @Author: likan
+ * @Date: 2022-03-05 19:52:28
+ * @Description: 统一错误请求响应格式
+ * @LastEditTime: 2022-04-09 09:44:34
+ */
+
 import {
   ArgumentsHost,
   Catch,

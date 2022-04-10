@@ -1,10 +1,3 @@
-/*
- * @Author likan
- * @Date 2022-03-05 19:52:28
- * @Description
- * @FileName app.module.ts
- */
-
 import { Module } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
 import { TypeOrmModule } from '@nestjs/typeorm'
@@ -16,6 +9,7 @@ import { ImageModule } from 'modules/image'
 import { UploadModule } from 'modules/upload'
 import { UserModule } from 'modules/user'
 
+// TODO 修改项目结构
 @Module({
   imports: [
     CommentModule,

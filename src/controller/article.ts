@@ -1,3 +1,10 @@
+/*
+ * @Author: likan
+ * @Date: 2022-03-05 19:52:28
+ * @Description:
+ * @LastEditTime: 2022-04-10 22:08:57
+ */
+
 import {
   Body,
   Controller,
@@ -21,9 +28,9 @@ export class ArticleController {
   })
   @Get()
   async select(
-    @Query('limit') limit: number,
-    @Query('offset') offset: number,
-    @Query('keyword') keyword: string
+    @Query('limit') limit = 10,
+    @Query('offset') offset = 0,
+    @Query('keyword') keyword = ''
   ) {
     const [article, total] = await this.articleService.select(
       limit,
@@ -31,14 +38,14 @@ export class ArticleController {
       keyword
     )
 
-    return [{ article, total }, 200, '获取文章成功']
+    return [{ article, total, offset }, 200, '获取文章成功']
   }
 
   @ApiOperation({
     summary: '获取文章详情'
   })
   @Get('/detail')
-  async detail(@Query('id') id: number) {
+  async detail(@Query('id') id = 0) {
     return [await this.articleService.detail(id), 200, '获取文章成功']
   }
 
@@ -47,10 +54,10 @@ export class ArticleController {
   })
   @Get('/category')
   async category(
-    @Query('limit') limit: number,
-    @Query('offset') offset: number,
-    @Query('keyword') keyword: string,
-    @Query('category') category: string
+    @Query('limit') limit = 10,
+    @Query('offset') offset = 0,
+    @Query('keyword') keyword = '',
+    @Query('category') category = 'javascript'
   ) {
     const [article, total] = await this.articleService.category(
       limit,
@@ -75,7 +82,7 @@ export class ArticleController {
     summary: '删除文章'
   })
   @Delete()
-  async remove(@Query('id') id: number) {
+  async remove(@Query('id') id = 0) {
     await this.articleService.remove(id)
 
     return [null, 200, '删除文章成功']

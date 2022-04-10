@@ -1,3 +1,10 @@
+/*
+ * @Author: likan
+ * @Date: 2022-03-05 19:52:28
+ * @Description:
+ * @LastEditTime: 2022-04-10 22:06:23
+ */
+
 import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { ArticleEntity } from 'entities/article'
@@ -25,27 +32,27 @@ export class ArticleService {
     private readonly articleRepository: Repository<ArticleEntity>
   ) {}
 
-  select(limit = 10, offset = 0, keyword = '') {
+  select(limit: number, offset: number, keyword: string) {
     return this.articleRepository.findAndCount({
       where: {
         deleted: 0,
         title: Like(`%${keyword}%`)
       },
-      select: selectKeys,
+      select: [...selectKeys, 'content'],
       skip: offset * limit,
       take: limit,
       order: { create_time: 'DESC' }
     })
   }
 
-  detail(id = 0) {
+  detail(id: number) {
     return this.articleRepository.findOne(id, {
       where: { deleted: 0 },
       select: [...selectKeys, 'content']
     })
   }
 
-  category(limit = 10, offset = 0, keyword = '', category = '') {
+  category(limit: number, offset: number, keyword: string, category: string) {
     return this.articleRepository.findAndCount({
       where: {
         deleted: 0,
